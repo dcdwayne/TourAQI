@@ -1,0 +1,1 @@
+# 注意：Sammi 需要在 FastAPI 程式碼中設定 CORS (跨來源資源共用)，允許前端的 Port 呼叫 API，否則 10 的 fetch 會失敗。
