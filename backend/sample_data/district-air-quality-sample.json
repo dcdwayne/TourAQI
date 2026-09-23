@@ -1,0 +1,433 @@
+{
+  "data": [
+    {
+      "district_code": "10009130",
+      "district_name": "麥寮鄉",
+      "county": "雲林縣",
+      "stations": [
+        {
+          "station_id": "83",
+          "name": "Mailiao"
+        }
+      ],
+      "representative_station_id": "83",
+      "aqi": 67.0,
+      "status": "Moderate",
+      "primary_pollutant": "PM10",
+      "pollutants": {
+        "pm25": {
+          "value": 15.0,
+          "unit": "μg/m³"
+        },
+        "pm10": {
+          "value": 50.0,
+          "unit": "μg/m³"
+        },
+        "o3": {
+          "value": 54.8,
+          "unit": "ppb"
+        },
+        "co": {
+          "value": 0.27,
+          "unit": "ppm"
+        },
+        "so2": {
+          "value": 4.2,
+          "unit": "ppb"
+        }
+      },
+      "published_at": "2026-09-22 11:00",
+      "method": "lowest_station_id"
+    },
+    {
+      "district_code": "10010070",
+      "district_name": "新港鄉",
+      "county": "嘉義縣",
+      "stations": [
+        {
+          "station_id": "39",
+          "name": "Xingang"
+        }
+      ],
+      "representative_station_id": "39",
+      "aqi": 60.0,
+      "status": "Moderate",
+      "primary_pollutant": "PM2.5",
+      "pollutants": {
+        "pm25": {
+          "value": 17.0,
+          "unit": "μg/m³"
+        },
+        "pm10": {
+          "value": 39.0,
+          "unit": "μg/m³"
+        },
+        "o3": {
+          "value": 55.4,
+          "unit": "ppb"
+        },
+        "co": {
+          "value": 0.3,
+          "unit": "ppm"
+        },
+        "so2": {
+          "value": 1.9,
+          "unit": "ppb"
+        }
+      },
+      "published_at": "2026-09-22 11:00",
+      "method": "lowest_station_id"
+    },
+    {
+      "district_code": "10013010",
+      "district_name": "屏東市",
+      "county": "屏東縣",
+      "stations": [
+        {
+          "station_id": "59",
+          "name": "Pingtung"
+        }
+      ],
+      "representative_station_id": "59",
+      "aqi": 32.0,
+      "status": "Good",
+      "primary_pollutant": null,
+      "pollutants": {
+        "pm25": {
+          "value": 7.0,
+          "unit": "μg/m³"
+        },
+        "pm10": {
+          "value": 27.0,
+          "unit": "μg/m³"
+        },
+        "o3": {
+          "value": 58.1,
+          "unit": "ppb"
+        },
+        "co": {
+          "value": 0.35,
+          "unit": "ppm"
+        },
+        "so2": {
+          "value": 1.8,
+          "unit": "ppb"
+        }
+      },
+      "published_at": "2026-09-22 11:00",
+      "method": "lowest_station_id"
+    },
+    {
+      "district_code": "10013250",
+      "district_name": "枋山鄉",
+      "county": "屏東縣",
+      "stations": [
+        {
+          "station_id": "313",
+          "name": "Pingtung（fangshan）"
+        }
+      ],
+      "representative_station_id": "313",
+      "aqi": 47.0,
+      "status": "Good",
+      "primary_pollutant": null,
+      "pollutants": {
+        "pm25": {
+          "value": 5.0,
+          "unit": "μg/m³"
+        },
+        "pm10": {
+          "value": 20.0,
+          "unit": "μg/m³"
+        },
+        "o3": {
+          "value": 61.0,
+          "unit": "ppb"
+        },
+        "co": {
+          "value": 0.18,
+          "unit": "ppm"
+        },
+        "so2": {
+          "value": 0.8,
+          "unit": "ppb"
+        }
+      },
+      "published_at": "2026-09-22 11:00",
+      "method": "lowest_station_id"
+    },
+    {
+      "district_code": "64000170",
+      "district_name": "仁武區",
+      "county": "高雄市",
+      "stations": [
+        {
+          "station_id": "49",
+          "name": "Renwu"
+        }
+      ],
+      "representative_station_id": "49",
+      "aqi": 41.0,
+      "status": "Good",
+      "primary_pollutant": null,
+      "pollutants": {
+        "pm25": {
+          "value": 10.0,
+          "unit": "μg/m³"
+        },
+        "pm10": {
+          "value": 27.0,
+          "unit": "μg/m³"
+        },
+        "o3": {
+          "value": 52.8,
+          "unit": "ppb"
+        },
+        "co": {
+          "value": 0.22,
+          "unit": "ppm"
+        },
+        "so2": {
+          "value": 1.2,
+          "unit": "ppb"
+        }
+      },
+      "published_at": "2026-09-22 11:00",
+      "method": "lowest_station_id"
+    },
+    {
+      "district_code": "10017070",
+      "district_name": "信義區",
+      "county": "基隆市",
+      "stations": [
+        {
+          "station_id": "1",
+          "name": "Keelung"
+        }
+      ],
+      "representative_station_id": "1",
+      "aqi": 40.0,
+      "status": "Good",
+      "primary_pollutant": null,
+      "pollutants": {
+        "pm25": {
+          "value": 12.0,
+          "unit": "μg/m³"
+        },
+        "pm10": {
+          "value": 26.0,
+          "unit": "μg/m³"
+        },
+        "o3": {
+          "value": 58.0,
+          "unit": "ppb"
+        },
+        "co": {
+          "value": 0.19,
+          "unit": "ppm"
+        },
+        "so2": {
+          "value": 1.0,
+          "unit": "ppb"
+        }
+      },
+      "published_at": "2026-09-22 11:00",
+      "method": "lowest_station_id"
+    },
+    {
+      "district_code": "66000280",
+      "district_name": "大里區",
+      "county": "臺中市",
+      "stations": [
+        {
+          "station_id": "30",
+          "name": "Dali"
+        }
+      ],
+      "representative_station_id": "30",
+      "aqi": 54.0,
+      "status": "Moderate",
+      "primary_pollutant": "PM2.5",
+      "pollutants": {
+        "pm25": {
+          "value": 16.0,
+          "unit": "μg/m³"
+        },
+        "pm10": {
+          "value": 41.0,
+          "unit": "μg/m³"
+        },
+        "o3": {
+          "value": 58.5,
+          "unit": "ppb"
+        },
+        "co": {
+          "value": 0.32,
+          "unit": "ppm"
+        },
+        "so2": {
+          "value": 1.6,
+          "unit": "ppb"
+        }
+      },
+      "published_at": "2026-09-22 11:00",
+      "method": "lowest_station_id"
+    },
+    {
+      "district_code": "63000040",
+      "district_name": "中山區",
+      "county": "臺北市",
+      "stations": [
+        {
+          "station_id": "12",
+          "name": "Zhongshan"
+        }
+      ],
+      "representative_station_id": "12",
+      "aqi": 46.0,
+      "status": "Good",
+      "primary_pollutant": null,
+      "pollutants": {
+        "pm25": {
+          "value": 16.0,
+          "unit": "μg/m³"
+        },
+        "pm10": {
+          "value": null,
+          "unit": "μg/m³"
+        },
+        "o3": {
+          "value": 49.5,
+          "unit": "ppb"
+        },
+        "co": {
+          "value": null,
+          "unit": "ppm"
+        },
+        "so2": {
+          "value": null,
+          "unit": "ppb"
+        }
+      },
+      "published_at": "2026-09-22 11:00",
+      "method": "lowest_station_id"
+    },
+    {
+      "district_code": "68000020",
+      "district_name": "中壢區",
+      "county": "桃園市",
+      "stations": [
+        {
+          "station_id": "68",
+          "name": "Zhongli"
+        }
+      ],
+      "representative_station_id": "68",
+      "aqi": 52.0,
+      "status": "Moderate",
+      "primary_pollutant": "NO2",
+      "pollutants": {
+        "pm25": {
+          "value": 10.0,
+          "unit": "μg/m³"
+        },
+        "pm10": {
+          "value": 37.0,
+          "unit": "μg/m³"
+        },
+        "o3": {
+          "value": 46.9,
+          "unit": "ppb"
+        },
+        "co": {
+          "value": 0.37,
+          "unit": "ppm"
+        },
+        "so2": {
+          "value": 1.1,
+          "unit": "ppb"
+        }
+      },
+      "published_at": "2026-09-22 11:00",
+      "method": "lowest_station_id"
+    },
+    {
+      "district_code": "68000090",
+      "district_name": "龍潭區",
+      "county": "桃園市",
+      "stations": [
+        {
+          "station_id": "21",
+          "name": "Longtan"
+        }
+      ],
+      "representative_station_id": "21",
+      "aqi": 38.0,
+      "status": "Good",
+      "primary_pollutant": null,
+      "pollutants": {
+        "pm25": {
+          "value": 8.0,
+          "unit": "μg/m³"
+        },
+        "pm10": {
+          "value": 32.0,
+          "unit": "μg/m³"
+        },
+        "o3": {
+          "value": 63.7,
+          "unit": "ppb"
+        },
+        "co": {
+          "value": 0.22,
+          "unit": "ppm"
+        },
+        "so2": {
+          "value": 1.7,
+          "unit": "ppb"
+        }
+      },
+      "published_at": "2026-09-22 11:00",
+      "method": "lowest_station_id"
+    },
+    {
+      "district_code": "63000030",
+      "district_name": "大安區",
+      "county": "臺北市",
+      "stations": [],
+      "representative_station_id": null,
+      "aqi": null,
+      "status": null,
+      "primary_pollutant": null,
+      "pollutants": {
+        "pm25": {
+          "value": null,
+          "unit": "μg/m³"
+        },
+        "pm10": {
+          "value": null,
+          "unit": "μg/m³"
+        },
+        "o3": {
+          "value": null,
+          "unit": "ppb"
+        },
+        "co": {
+          "value": null,
+          "unit": "ppm"
+        },
+        "so2": {
+          "value": null,
+          "unit": "ppb"
+        }
+      },
+      "published_at": null,
+      "method": "no_station"
+    }
+  ],
+  "meta": {
+    "count": 11,
+    "is_mock": true,
+    "last_synced_at": null
+  }
+}
