@@ -1,0 +1,4 @@
+fastapi
+uvicorn
+pymysql[rsa]
+python-dotenv
