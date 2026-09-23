@@ -148,12 +148,7 @@ __pycache__
 .env
 
 # 後端測試用
-# (只開放四份小型範例資料供前端測試畫面，正式部屬再完全排除，及刪除已上傳範例)
-/backend/sample_data/*
-!/backend/sample_data/stations-10.csv
-!/backend/sample_data/taipei-attractions-5.json
-!/backend/sample_data/boundaries-sample.geojson
-!/backend/sample_data/district-air-quality-sample.json
+/backend/sample_data/
 
 # 忽略資料處理的原始檔案與開發測試腳本
 data_pipeline/data/
