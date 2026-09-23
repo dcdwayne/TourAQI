@@ -2,13 +2,10 @@ import os
 import pymysql
 import math
 import json
-from fastapi import Query
-from pathlib import Path
-from fastapi import FastAPI
-from fastapi import HTTPException
-from fastapi.responses import FileResponse
+# from pathlib import Path
+from fastapi import FastAPI, Query, Path, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import RedirectResponse
+from fastapi.responses import FileResponse, RedirectResponse, JSONResponse
 from urllib.parse import urlencode
 from dotenv import load_dotenv
 from fastapi.staticfiles import StaticFiles
@@ -288,7 +285,7 @@ def get_air_quality(siteid: int | None = Query(default=None, gt=0)):
     }
 
 # -- 景點資料(點位、彈出視窗) -----
-@app.get("/api/attractions/sptpoint/")
+@app.get("/api/attractions/sptpoint/", tags=["Attraction"])
 def get_attraction_points(attraction_id: str | None = Query(default=None)):
     # 增加彈出視窗可能會用到的詳細欄位
     sql = """
@@ -398,6 +395,60 @@ def get_boundaries():
             "count": len(results)
         }
     }
+
+# ==========================================
+# 根據景點編號取得景點資料
+# ==========================================
+@app.get("/api/attraction/{attractionId}", summary="根據景點編號取得景點資料", tags=["Attraction"])
+async def get_attraction_by_id(
+    # 這裡的 Path 現在正確指向 fastapi.Path 了
+    attractionId: str = Path(..., description="景點編號")
+):
+    try:
+        # 1. 撈取該 ID 的景點主資料 (直接使用現成的 fetch_all 函式)
+        sql_attraction = "SELECT * FROM attractions WHERE AttractionID = %s"
+        attraction_rows = fetch_all(sql_attraction, (attractionId,))
+
+        # 防呆機制：如果資料庫找不到這個 ID 的景點
+        if not attraction_rows:
+            return JSONResponse(
+                status_code=400, 
+                content={"error": True, "message": "景點編號不正確"}
+            )
+
+        # 取得第一筆 (也是唯一一筆) 資料
+        attraction_data = attraction_rows[0]
+
+        # 2. 撈取該景點的所有圖片
+        # 注意欄位名稱需與資料庫相符 (AttractionID, URL)
+        sql_images = "SELECT URL FROM attraction_images WHERE AttractionID = %s"
+        images_data = fetch_all(sql_images, (attractionId,))
+
+        # 將撈出來的多筆圖片資料，濃縮成一個只有網址字串的 List
+        image_urls = [img["URL"] for img in images_data]
+
+        # 3. 組合並回傳正確格式
+        attraction_data["images"] = image_urls
+
+        return {
+            "data": attraction_data
+        }
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return JSONResponse(
+            status_code=500,
+            content={"error": True, "message": "伺服器內部錯誤"}
+        )
+
+# ==========================================
+# 網站圖示 (Favicon)
+# ==========================================
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    # 利用 FRONTEND_DIR 組合出正確的本機絕對路徑
+    favicon_path = os.path.join(FRONTEND_DIR, "assets", "images", "favicon.ico")
+    return FileResponse(favicon_path)
 
 # 3. 將 frontend 資料夾掛載到根路徑 "/"，範圍最廣的 StaticFiles 必須「墊底」
 app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")
