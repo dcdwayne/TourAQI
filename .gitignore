@@ -154,3 +154,8 @@ __pycache__
 !/backend/sample_data/taipei-attractions-5.json
 !/backend/sample_data/boundaries-sample.geojson
 !/backend/sample_data/district-air-quality-sample.json
+
+# 忽略資料處理的原始檔案與開發測試腳本
+data_pipeline/data/
+data_pipeline/data_processing.ipynb
+data_pipeline/data_processing.py
