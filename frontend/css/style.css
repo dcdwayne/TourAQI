@@ -1,0 +1,454 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#map {
+    height: 100vh;
+    width: 100%;
+}
+.topbar { /* 設定最上方導覽列 */
+    height: 64px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; /* 左右兩側分散排列 */
+    padding: 0 24px; /* 左右內距 */
+    background-color: #ffffff; 
+    border-bottom: 1px solid #e5e7eb; /* 加入底部細線 */
+    position: relative; /* 維持正常版面位置 */
+    z-index: 1000; /* 確保導覽列顯示在地圖上方 */
+} 
+
+.brand { /* 設定品牌區域 */
+    display: flex; 
+    align-items: center;
+    gap: 12px; 
+} 
+
+.brand-icon { /* 設定 AQ 圖示 */
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.brand-text h1 { /* 設定網站主標題 */
+    margin: 0;
+    color: #263238; 
+    font-size: 18px; 
+    font-weight: 700; 
+} 
+
+.brand-text p { /* 設定網站副標題 */
+    margin: 2px 0 0; 
+    color: #78909c; 
+    font-size: 12px; 
+} 
+
+.status { /* 設定右側系統狀態 */
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    color: #607d8b; 
+    font-size: 13px; 
+} 
+
+.status-dot { /* 設定狀態圓點 */
+    width: 8px; 
+    height: 8px; 
+    border-radius: 50%;
+    background-color: #35b779; 
+} 
+
+.api-status { /* 設定 API 狀態文字 */
+    margin-left: 12px; 
+    color: #9aa6ad; 
+} 
+.sidebar { /* 設定左側資訊面板 */
+    position: absolute; 
+    top: 88px; 
+    left: 24px; 
+    width: 340px; 
+    padding: 24px; 
+    background-color: #ffffff; 
+    border-radius: 16px; 
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12); 
+    z-index: 900; 
+} 
+
+.layer-section { /* 設定圖層區塊 */
+    padding-bottom: 4px; /* 縮小圖層選項與測站卡片的間距 */
+} 
+
+.layer-section h2 { /* 設定圖層標題 */
+    margin: 0 0 8px; 
+    color: #263238; 
+    font-size: 18px; 
+} 
+
+.layer-title { /* 設定圖層標題與圖示排列 */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.layer-title img { /* 設定圖層圖示大小 */
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
+.layer-section p { /* 設定圖層提示文字 */
+    margin: 0; 
+    color: #78909c; 
+    font-size: 13px;
+} 
+.aqi-section { /* 設定 AQI 區塊 */
+    padding-top: 20px; /* 縮小圖層圖例與 AQI 指標說明的距離 */
+} 
+
+.legend-title { /* 設定整體圖例標題 */
+    margin: 20px 0 0; /* 設定標題與上方內容的間距 */
+    color: #263238; /* 使用深色顯示標題 */
+    font-size: 18px; /* 設定標題文字大小 */
+} 
+
+.station-summary { /* 設定目前測站數量摘要卡片 */
+    display: flex; /* 讓文字與圖示左右排列 */
+    align-items: center; /* 讓內容垂直置中 */
+    justify-content: space-between; /* 將圖示放到卡片右側 */
+    margin-top: 8px; /* 縮小與鄉鎮邊界選項的距離 */
+    padding: 12px 14px; /* 設定卡片內距 */
+    border-radius: 12px; /* 設定卡片圓角 */
+    background-color: #f1f8f8; /* 使用淡青色背景 */
+}
+
+.station-summary p { /* 設定摘要卡片標題 */
+    margin: 0; /* 移除預設外距 */
+    color: #78909c; /* 使用淡灰藍色文字 */
+    font-size: 11px; /* 設定小標題字體大小 */
+}
+
+.station-summary strong { /* 設定摘要卡片數量 */
+    display: block; /* 讓數量獨立成行 */
+    margin-top: 2px; /* 與標題保留間距 */
+    color: #168a68; /* 使用綠色強調測站數量 */
+    font-size: 24px; /* 放大測站數量 */
+    line-height: 1; /* 讓卡片高度更緊湊 */
+}
+
+#station-updated-at { /* 設定摘要卡片更新時間 */
+    display: block; /* 讓更新時間獨立成行 */
+    margin-top: 6px; /* 與測站數量保留距離 */
+    color: #90a4ae; /* 使用淡灰藍色避免搶過數量 */
+    font-size: 10px; /* 使用小字體顯示時間 */
+}
+
+.station-summary-icon { /* 設定摘要卡片右側圖示 */
+    display: flex; /* 讓圖示可以置中 */
+    align-items: center; /* 圖示垂直置中 */
+    justify-content: center; /* 圖示水平置中 */
+    width: 34px; /* 設定圖示背景寬度 */
+    height: 34px; /* 設定圖示背景高度 */
+    border-radius: 10px; /* 設定圖示背景圓角 */
+    background-color: #ffffff; /* 使用白色圖示背景 */
+    color: #0891b2; /* 使用測站圖例的青綠色 */
+    font-size: 17px; /* 設定圖示大小 */
+}
+
+.aqi-section h2 { /* 設定 AQI 標題 */
+    margin: 0 0 8px; /* 縮小 AQI 標題與第一列指標的距離 */
+    color: #263238; 
+    font-size: 16px; /* 與地圖圖例標題使用相同大小 */
+} 
+
+.aqi-item { /* 設定每一列 AQI 資訊 */
+    display: flex; 
+    align-items: center; 
+    min-height: 32px; 
+    gap: 10px; 
+} 
+
+.aqi-color { /* 設定 AQI 顏色方塊共用樣式 */
+    width: 12px; 
+    height: 12px; 
+    border-radius: 3px; 
+} 
+
+.aqi-name { /* 設定 AQI 名稱 */
+    flex: 1; 
+    color: #546e7a; 
+    font-size: 14px; 
+} 
+
+.aqi-range { /* 設定 AQI 數值範圍 */
+    color: #90a4ae; 
+    font-size: 13px; 
+} 
+
+.aqi-good { /* 設定良好顏色 */
+    background-color: #43b581; 
+} 
+
+.aqi-moderate { /* 設定普通顏色 */
+    background-color: #f2c94c; /* 使用黃色代表普通 */
+} 
+
+.aqi-sensitive { /* 設定敏感族群不健康顏色 */
+    background-color: #f2994a; /* 使用橘色代表敏感族群不健康 */
+} 
+
+.aqi-unhealthy { /* 設定所有族群不健康顏色 */
+    background-color: #eb5757; /* 使用紅色代表所有族群不健康 */
+} 
+
+.aqi-very-unhealthy { /* 設定非常不健康顏色 */
+    background-color: #9b51e0; /* 使用紫色代表非常不健康 */
+} 
+
+.aqi-hazardous { /* 設定危害顏色 */
+    background-color: #8f4b4b; /* 使用深紅色代表危害 */
+} 
+
+.map-legend { /* 設定圖層圖例區塊 */
+    padding-top: 14px; /* 與 AQI 最後一列保留適度間距 */
+} 
+
+.map-legend h3 { /* 設定地圖圖例子標題 */
+    margin: 0 0 8px; /* 設定子標題下方間距 */
+    color: #263238; /* 使用深色顯示標題 */
+    font-size: 16px; /* 設定子標題文字大小 */
+} 
+
+.legend-item { /* 設定每一列圖層圖例 */
+    display: flex; /* 讓圓點與文字水平排列 */
+    align-items: center; /* 讓圓點與文字垂直置中 */
+    min-height: 36px; /* 設定每列圖例高度 */
+    gap: 10px; /* 設定圓點與文字間距 */
+    color: #546e7a; /* 設定圖例文字顏色 */
+    font-size: 14px; /* 設定圖例文字大小 */
+} 
+
+.legend-item[hidden] { /* 隱藏沒有被勾選的圖層圖例 */
+    display: none;
+}
+
+.legend-dot { /* 設定圖層圖例圓點共用樣式 */
+    width: 12px; /* 設定圓點寬度 */
+    height: 12px; /* 設定圓點高度 */
+    border-radius: 50%; /* 將圖示設定為圓形 */
+} 
+
+.attraction-legend-dot { /* 設定觀光景點圖例顏色 */
+    background-color: #696969; /* 使用藍色並避開 AQI 顏色 */
+} 
+
+.station-legend-dot { /* 設定測站點位圖例顏色 */
+    background-color: #0891b2; /* 使用青綠色並避開 AQI 顏色 */
+} 
+
+.township-legend-dot {
+    background-color: #ffffff;
+    border: 2px solid #6b7280;
+    box-sizing: border-box;
+}
+
+.main-content { /* 設定導覽列下方的主要內容區域 */
+    height: calc(100vh - 64px); /* 扣除上方導覽列高度 */
+    display: grid; /* 使用網格排版 */
+    grid-template-columns: 340px 1fr; /* 左側固定寬度，右側使用剩餘空間 */
+    overflow: hidden; /* 隱藏超出畫面的內容 */
+} 
+
+.sidebar { /* 覆蓋原本左側面板的定位方式 */
+    position: static; /* 讓面板回到正常版面位置 */
+    width: auto; /* 讓面板寬度由 grid 欄位控制 */
+    height: 100%; /* 讓面板填滿整個高度 */
+    padding: 24px; /* 保留面板內距 */
+    background-color: #ffffff; 
+    border-radius: 0; 
+    box-shadow: none; /* 移除浮動面板陰影 */
+    overflow-y: auto; /* 面板內容過多時允許垂直捲動 */
+    z-index: 1; /* 設定面板顯示層級 */
+} 
+
+.map-area { /* 設定右側地圖區域 */
+    min-width: 0; /* 防止地圖造成版面橫向溢出 */
+    height: 100%; /* 讓地圖區域填滿高度 */
+} 
+
+#map { /* 設定 Leaflet 地圖容器 */
+    width: 100%; 
+    height: 100%; 
+} 
+
+body { /* 設定整個頁面 */
+    overflow: hidden; /* 防止頁面出現額外捲軸 */
+} 
+.layer-option { /* 設定圖層選項 */
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    min-height: 36px; 
+    color: #546e7a; 
+    font-size: 14px; 
+    cursor: pointer; /* 滑鼠移入時顯示可點擊游標 */
+} 
+
+.layer-option input { /* 設定圖層 checkbox */
+    width: 16px; 
+    height: 16px; 
+    accent-color: #168a68; 
+    cursor: pointer; 
+} 
+
+.layer-icon { /* 設定圖層顏色圖示 */
+    width: 10px; 
+    height: 10px; 
+    border-radius: 50%; 
+} 
+
+.aqi-icon { /* 設定 AQI 圖示顏色 */
+    background-color: #f2c94c; /* 使用黃色代表 AQI */
+} 
+
+.attraction-icon { /* 設定觀光景點圖示顏色 */
+    background-color: #43b581; /* 使用綠色代表觀光景點 */
+} 
+
+.station-icon { /* 設定測站點位圖示顏色 */
+    background-color: #3f88c5; /* 使用藍色代表測站 */
+} 
+
+.township-icon { /* 設定鄉鎮邊界圖示顏色 */
+    background-color: #8e7dbe; /* 使用紫色代表鄉鎮邊界 */
+} 
+.leaflet-popup-content-wrapper { /* 設定 Leaflet popup 外框 */
+    border-radius: 16px; 
+    padding: 4px; 
+}
+
+.leaflet-popup-content { /* 設定 Leaflet popup 內容區 */
+    width: 300px; 
+    margin: 16px; 
+} 
+
+.station-popup { /* 設定測站 popup */
+    color: #546e7a;
+    font-size: 13px; 
+} 
+
+.leaflet-popup-content:has(.station-meta) {
+    width: 120px !important;
+}
+
+.leaflet-popup-content:has(.attraction-popup) {
+    width: 150px !important;
+}
+
+.leaflet-popup-content:has(.attraction-popup) .popup-button {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 20px;
+}
+
+.popup-header { /* 設定 popup 標題區 */
+    display: flex; 
+    align-items: flex-start; 
+    justify-content: space-between; 
+    gap: 16px; 
+} 
+
+.popup-header h3 { /* 設定測站名稱 */
+    margin: 0; 
+    color: #263238; 
+    font-size: 20px; 
+} 
+
+.popup-header p { /* 設定測站縣市 */
+    margin: 4px 0 0; /* 縣市文字上方距離 */
+    color: #90a4ae; 
+    font-size: 13px; 
+}
+
+.popup-header .station-meta { /* 設定測站名稱與編號資訊 */
+    margin-top: 3px; /* 設定欄位之間的距離 */
+    color: #607d8b; /* 使用與 popup 內文一致的顏色 */
+    font-size: 12px; /* 使用較小字體避免搶過標題 */
+}
+
+.aqi-value { /* 設定 AQI 數值 */
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    min-width: 52px; 
+    height: 52px;
+    border-radius: 12px; 
+    background-color: #f2994a;
+    color: #ffffff; 
+    font-size: 20px; 
+    font-weight: 700; 
+} 
+
+.popup-divider { /* 設定 popup 分隔線 */
+    height: 1px; 
+    margin: 14px 0; 
+    background-color: #e5e7eb; 
+} 
+
+.station-popup > p { /* 設定空品狀態文字 */
+    margin: 8px 0; 
+    color: #607d8b; 
+    line-height: 1.5; 
+} 
+
+.pollutant-grid { /* 設定污染物資訊網格 */
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px; 
+    margin-top: 12px;
+} 
+
+.pollutant-grid > div { /* 設定單一污染物卡片 */
+    display: flex; 
+    flex-direction: column;
+    gap: 4px; 
+    padding: 10px; 
+    border-radius: 10px; 
+    background-color: #f3f7f8; 
+} 
+
+.pollutant-grid span { /* 設定污染物名稱 */
+    color: #90a4ae; 
+    font-size: 12px; 
+} 
+
+.pollutant-grid strong { /* 設定污染物數值 */
+    color: #37474f; 
+    font-size: 14px; 
+} 
+
+.published-time { /* 設定資料時間 */
+    margin-top: 14px; 
+    color: #90a4ae; 
+    font-size: 12px; 
+} 
+
+.leaflet-container a.popup-button { /* 設定 Leaflet popup 中的觀光景點按鈕 */
+    display: block; 
+    margin-top: 14px; 
+    padding: 10px 14px; 
+    border-radius: 8px; 
+    background-color: #808080; 
+    color: #ffffff; 
+    text-align: center; 
+    text-decoration: none; 
+    font-weight: 700; 
+} 
+
+.leaflet-container a.popup-button:hover { /* 設定滑鼠移入 popup 內按鈕效果 */
+    background-color: #696969; 
+} 

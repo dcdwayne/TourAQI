@@ -1,4 +1,5 @@
 fastapi
 uvicorn
 pymysql[rsa]
+mysql-connector-python
 python-dotenv
