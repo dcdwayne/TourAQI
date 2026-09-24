@@ -37,7 +37,7 @@ async function fetchAttractionData() {
   try {
     // 呼叫你的後端 API
     const response = await fetch(
-      `http://127.0.0.1:8000/api/attraction/${attractionId}`
+      `/api/attraction/${attractionId}`
     );
     const result = await response.json();
     const data = result.data; // 依照你的 API 格式，通常資料包在 data 裡面
