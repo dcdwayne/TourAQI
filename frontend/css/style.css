@@ -20,6 +20,11 @@
     z-index: 1000; /* 確保導覽列顯示在地圖上方 */
 } 
 
+.title-logo {
+  color: #272727;
+  text-decoration: none;
+}
+
 .brand { /* 設定品牌區域 */
     display: flex; 
     align-items: center;
