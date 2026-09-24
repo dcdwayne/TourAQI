@@ -1,10 +1,9 @@
 // ==========================================
 // 1. 解析網址取得 attractionId
 // ==========================================
-// 假設網址是 /attraction/10，pathname 會是 "/attraction/10"
-const pathname = window.location.pathname; 
-const urlParts = pathname.split('/'); 
-const attractionId = urlParts[urlParts.length - 1]; // 取得最後一段的 ID
+// 從網址的 ?id= 取得景點編號
+const queryParams = new URLSearchParams(window.location.search);
+const attractionId = queryParams.get('id');
 
 // ==========================================
 // 2. DOM 元素選取
@@ -32,26 +31,28 @@ let currentImgIndex = 0;
 // ==========================================
 window.addEventListener('DOMContentLoaded', () => {
   fetchAttractionData();
-  setupPriceToggle();
 });
 
 async function fetchAttractionData() {
   try {
     // 呼叫你的後端 API
-    const response = await fetch(`/api/attraction/${attractionId}`);
+    const response = await fetch(
+      `http://127.0.0.1:8000/api/attraction/${attractionId}`
+    );
     const result = await response.json();
     const data = result.data; // 依照你的 API 格式，通常資料包在 data 裡面
 
     // ---- A. 渲染純文字資訊 ----
     titleEl.textContent = data.AttractionName;
     cityEl.textContent = data.PostalAddress_City;
-    townEl.textContent = data.PostalAddress_Town; 
+    townEl.textContent = data.PostalAddress_Town;
     descEl.textContent = data.Description;
     addressEl.textContent = data.PostalAddress_StreetAddress;
-    transportEl.textContent = data.TrafficInfo;
+    transportEl.textContent =
+      data.TrafficInfo?.trim() || "目前尚無交通資訊";
 
     // ---- B. 渲染圖片與輪播指示器 ----
-    imagesList = data.images; 
+    imagesList = data.images;
     renderCarousel(imagesList);
 
   } catch (error) {
@@ -60,26 +61,7 @@ async function fetchAttractionData() {
 }
 
 // ==========================================
-// 4. 金額切換邏輯 (上半天 2000 / 下半天 2500)
-// ==========================================
-function setupPriceToggle() {
-  const radioInputs = document.querySelectorAll('input[name="time"]');
-  const priceText = document.getElementById('price-text');
-
-  radioInputs.forEach(radio => {
-    radio.addEventListener('change', (e) => {
-      // 根據選中的值來改變文字
-      if (e.target.value === 'morning') {
-        priceText.textContent = '新台幣 2000 元';
-      } else {
-        priceText.textContent = '新台幣 2500 元';
-      }
-    });
-  });
-}
-
-// ==========================================
-// 5. 渲染輪播圖與橫向指示條
+// 4. 渲染輪播圖與橫向指示條
 // ==========================================
 function renderCarousel(images) {
   trackEl.innerHTML = '';
@@ -107,7 +89,7 @@ function renderCarousel(images) {
 }
 
 // ==========================================
-// 6.切換圖片與指示條狀態 (上一張 / 下一張)
+// 5.切換圖片與指示條狀態 (上一張 / 下一張)
 // ==========================================
 function changeImage(newIndex) {
   const allImgs = document.querySelectorAll('.carousel-img');
@@ -136,75 +118,4 @@ nextBtn.addEventListener('click', () => {
   // 如果是最後一張，按下一張就跳回第一張；否則就 +1
   const newIndex = currentImgIndex === imagesList.length - 1 ? 0 : currentImgIndex + 1;
   changeImage(newIndex);
-});
-
-// ==========================================
-// Part 5-4: 建立新的預定行程 (開始預約行程按鈕)
-// ==========================================
-document.addEventListener("DOMContentLoaded", () => {
-    const bookingForm = document.getElementById("booking-form");
-    
-    if (bookingForm) {
-        bookingForm.addEventListener("submit", async (e) => {
-            e.preventDefault(); 
-            
-            const token = localStorage.getItem("token");
-            
-            // 1. 若沒有 Token，觸發右上角登入按鈕來開啟彈窗
-            if (!token) {
-                const authBtn = document.getElementById('nav-auth-btn');
-                if (authBtn) authBtn.click();
-                return;
-            }
-
-            // 2. 準備要送到後端的資料
-            const pathParts = window.location.pathname.split('/');
-            const attractionId = parseInt(pathParts[pathParts.length - 1]);
-            
-            const date = document.getElementById("booking-date").value;
-            const timeElement = document.querySelector('input[name="time"]:checked');
-            const time = timeElement ? timeElement.value : "morning";
-            const price = time === "morning" ? 2000 : 2500;
-
-            const bookingData = {
-                attractionId: attractionId,
-                date: date,
-                time: time,
-                price: price
-            };
-
-            // 3. 呼叫建立預定行程 API
-            try {
-                const response = await fetch("/api/booking", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
-                    },
-                    body: JSON.stringify(bookingData)
-                });
-                
-                // Token 過期或未登入防呆
-                if (response.status === 403) {
-                    localStorage.removeItem("token");
-                    const authBtn = document.getElementById('nav-auth-btn');
-                    if (authBtn) authBtn.click();
-                    return;
-                }
-
-                const result = await response.json();
-
-                // 4. 預定成功，導向購物籃頁面
-                if (result.ok) {
-                    window.location.href = "/booking";
-                } else {
-                    alert(result.message || "預約失敗，請稍後再試");
-                }
-
-            } catch (error) {
-                console.error("預約行程發生錯誤:", error);
-                alert("伺服器連線錯誤，請稍後再試");
-            }
-        });
-    }
 });

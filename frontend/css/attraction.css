@@ -35,7 +35,7 @@ body {
 .nav-logo {
   font-size: 30px;
   font-weight: 700;
-  color: #448899;
+  color: #666666;
   text-decoration: none;
 }
 
@@ -57,11 +57,17 @@ body {
   padding: 0 15px;
 }
 
-/* 上半部：輪播圖 + 表單 */
+/* 上半部：輪播圖 + 景點資訊 */
 .overview-section {
   display: flex;
   gap: 30px;
   justify-content: center;
+  align-items: flex-start;
+}
+
+.left-column {
+  width: 540px;
+  flex-shrink: 0;
 }
 
 /* 輪播圖容器 */
@@ -159,153 +165,98 @@ body {
   background-color: #000000;
 }
 
-/* 右側資訊與預約卡片 */
+/* 右側景點資訊 */
 .profile-container {
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-width: 0;
+}
+
+.attraction-summary {
+  padding: 20px 4px 0;
+}
+
+.attraction-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  flex-wrap: wrap;
 }
 
 .attraction-title {
   font-size: 24px;
   font-weight: 700;
   color: #666666;
-  margin-bottom: 15px;
+  margin-bottom: 0;
 }
 
 .attraction-meta {
-  font-size: 16px;
-  color: #666666;
-  margin-bottom: 20px;
-}
-
-/* 預約卡片 */
-.booking-card {
-  background: #e8e8e8;
-  border-radius: 5px;
-  padding: 20px 20px 40px 20px;
-}
-
-.booking-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: #666666;
-  margin-bottom: 15px;
-}
-
-.booking-subtitle {
-  font-size: 16px;
-  color: #666666;
-  margin-bottom: 20px;
-}
-
-.booking-form .form-group {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  margin-bottom: 15px;
   font-size: 16px;
-  font-weight: 700;
-}
-
-.form-label {
-  margin-right: 5px;
-  white-space: nowrap;
-}
-
-.form-input-date {
-  padding: 5px 10px;
-  border: none;
-  font-size: 16px;
-  outline: none;
-}
-
-.radio-group {
-  display: flex;
-  gap: 18px;
-  align-items: center;
-  font-weight: 500;
-}
-
-.radio-label {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-/* ==========================================
-   👇 針對客製化單選按鈕新增的 CSS 👇
-   ========================================== */
-
-/* 1. 把原生的 input 隱藏起來 */
-.radio-label input[type="radio"] {
-  display: none;
-}
-
-/* 2. 畫出未選中時的「白色外圈」 */
-.radio-custom {
-  display: inline-block;
-  width: 20px;         /* 外圈設定為 20px */
-  height: 20px;
-  background-color: #ffffff; /* 白色底 */
-  border-radius: 50%;  /* 變成圓形 */
-  position: relative;  /* 讓裡面的點點能絕對定位在正中間 */
-}
-
-/* 3. 當 input 被勾選 (:checked) 時，利用 ::after 畫出「90% 填滿的顏色內圈」 */
-.radio-label input[type="radio"]:checked + .radio-custom::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* 確保點點在正中心 */
-  width: 16px;         /* 內圈 16px，剛好佔外圈 80% */
-  height: 16px;
-  background-color: #448899; /* 設計稿顏色 */
-  border-radius: 50%;
-}
-
-.price-text {
-  font-weight: 500;
-}
-
-.booking-submit-btn {
-  margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #448899;
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
-  font-size: 19px;
-  cursor: pointer;
-}
-
-/* 分隔線 */
-.section-divider {
-  border: none;
-  border-top: 1px solid #e8e8e8;
-  margin: 40px 0;
-}
-
-/* 下半部詳細介紹 */
-.detail-section {
-  font-size: 16px;
-  line-height: 1.8;
   color: #666666;
+  margin-bottom: 18px;
 }
 
-.attraction-description {
-  margin-bottom: 25px;
-  white-space: pre-line;
+.location-icon {
+  width: 20px;
+  height: 24px;
+  margin-right: 8px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23168a68" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  flex-shrink: 0;
+}
+
+.summary-info {
+  border-top: 1px solid #e5e5e5;
+  padding-top: 18px;
+}
+
+/* 景點詳細資訊卡 */
+.attraction-info-card {
+  padding: 24px;
+  background-color: #f3f7f8;
+  border: 1px solid #dfeeee;
+  border-radius: 8px;
 }
 
 .info-block {
-  margin-bottom: 20px;
+  margin-bottom: 22px;
+}
+
+.info-block:last-child {
+  margin-bottom: 0;
 }
 
 .info-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  color: #263238;
+  font-size: 16px;
   font-weight: 700;
-  margin-bottom: 5px;
+}
+
+.attraction-info-card .info-title::before {
+  content: "";
+  width: 5px;
+  height: 25px;
+  margin-right: 10px;
+  border-radius: 3px;
+  background-color: #168a68;
+}
+
+.info-content {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #546e7a;
+}
+
+.attraction-description {
+  white-space: pre-line;
 }
 
 /* 頁尾 */
@@ -340,15 +291,12 @@ body {
     border-radius: 0;
   }
 
+  .left-column {
+    width: 100%;
+  }
+
   .profile-container {
     padding: 0 20px;
   }
 
-  .section-divider {
-    margin: 30px 20px;
-  }
-
-  .detail-section {
-    padding: 0 20px;
-  }
 }
