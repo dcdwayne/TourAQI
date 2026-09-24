@@ -30,6 +30,7 @@ DB_CONFIG = {
     'host': os.getenv("DB_HOST"),
     'user': os.getenv("DB_USER"),          
     'password': os.getenv("DB_PASSWORD"),  
+    'port': int(os.getenv("DB_PORT", "3306")),
     'database': os.getenv("DB_NAME")    
 }
 
@@ -159,12 +160,12 @@ def get_stations(siteid: int | None = Query(default=None, gt=0)):
 
 # -- 測站最新空氣品質(顏色) GET /api/air-quality -----
 # 用途：鄉鎮區塊上色＋鄉鎮空氣品質彈窗 (若鄉鎮區不是用這支API上色就要再改)
-AQI_STATUS_MAPPING = {"良好":"#1b9666",
-                    "普通":"#fcfc3e",
-                    "對敏感族群不健康":"#fa9c3d",
-                    "對所有族群不健康":"#c62536",
-                    "非常不健康":"#680a97",
-                    "危害":"#7b1324"
+AQI_STATUS_MAPPING = {"良好":"#43b581",
+                    "普通":"#f2c94c",
+                    "對敏感族群不健康":"#f2994a",
+                    "對所有族群不健康":"#eb5757",
+                    "非常不健康":"#9b51e0",
+                    "危害":"#8f4b4b"
                     }
 
 @app.get("/api/air-quality")

@@ -1,11 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>觀光景點空氣品質展示圖臺</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
+
 <body>
-    
+    <header class="topbar"> <!-- 建立網站最上方的導覽列 -->
+        <div class="brand"> <!-- 放置網站品牌區域 -->
+            <img class="brand-icon" src="assets/images/favicon.ico" alt="觀光景點空氣品質展示圖臺 logo"> <!-- 顯示網站 logo -->
+            <div class="brand-text"> <!-- 放置網站名稱文字 -->
+                <h1>
+                    <a href="/" class = "title-logo">觀光景點空氣品質展示圖臺</a>
+                </h1> <!-- 顯示網站主標題 -->
+                <p>景點與空氣品質資訊</p> <!-- 顯示網站副標題 -->
+            </div>
+        </div>
+        <div class="status"> <!-- 放置右側系統狀態 -->
+            <span class="status-dot"></span> <!-- 顯示綠色狀態圓點 -->
+            <span class="api-status">資料來源：政府資料開放平臺</span> <!-- 顯示資料來源 -->
+        </div>
+    </header>
+    <main class="main-content"> <!-- 建立主要內容區域 -->
+        <aside class="sidebar"> <!-- 建立左側資訊面板 -->
+            <section class="layer-section"> <!-- 建立圖層區塊 -->
+                <div class="layer-title"> <!-- 建立圖層標題與圖示區域 -->
+                    <img src="assets/images/map_7263337.png" alt="圖層圖示"> <!-- 顯示圖層圖示 -->
+                    <h2>地圖圖層</h2> <!-- 顯示圖層標題 -->
+                </div>
+                <p>選擇要顯示在地圖上的資料圖層</p> <!-- 顯示操作提示 -->
+
+                <label class="layer-option"> <!-- 建立 AQI 圖層選項 -->
+                    <input type="checkbox" id="aqi-layer" checked> <!-- 建立 AQI checkbox 並預設勾選 -->
+                    <span>空氣品質指標（AQI）</span> <!-- 顯示 AQI 圖層名稱 -->
+                </label>
+
+                <label class="layer-option"> <!-- 建立觀光景點圖層選項 -->
+                    <input type="checkbox" id="attractions-layer" checked> <!-- 建立觀光景點 checkbox 並預設勾選 -->
+                    <span>觀光景點</span> <!-- 顯示觀光景點圖層名稱 -->
+                </label>
+
+                <label class="layer-option"> <!-- 建立測站點位圖層選項 -->
+                    <input type="checkbox" id="stations-layer" checked> <!-- 建立測站點位 checkbox 並預設勾選 -->
+                    <span>測站點位</span> <!-- 顯示測站點位圖層名稱 -->
+                </label>
+
+                <label class="layer-option"> <!-- 建立鄉鎮邊界圖層選項 -->
+                    <input type="checkbox" id="townships-layer"> <!-- 建立鄉鎮邊界 checkbox -->
+                    <span>鄉鎮邊界</span> <!-- 顯示鄉鎮邊界圖層名稱 -->
+                </label>
+            </section>
+
+            <section class="station-summary" aria-label="目前顯示測站數量"> <!-- 建立測站數量摘要卡片 -->
+                <div> <!-- 建立摘要文字區域 -->
+                    <p>目前顯示測站</p> <!-- 顯示摘要標題 -->
+                    <strong id="station-count">0</strong> <!-- 顯示目前測站數量 -->
+                    <span id="station-updated-at">資料來源：載入中...</span> <!-- 顯示測站資料更新時間 -->
+                </div>
+                <span class="station-summary-icon" aria-hidden="true">✦</span> <!-- 顯示測站摘要圖示 -->
+            </section>
+
+            <section class="aqi-section"> <!-- 建立 AQI 指標說明區塊 -->
+                <div class="layer-title">
+                    <img src="assets/images/cloud-computing_117232.png" alt="AQI指標說明圖示">
+                    <h2>AQI 指標說明</h2> <!-- 顯示 AQI 標題 -->
+                </div>
+                <div class="aqi-item"> <!-- 建立良好項目 -->
+                    <span class="aqi-color aqi-good"></span> <!-- 顯示良好顏色 -->
+                    <span class="aqi-name">良好</span> <!-- 顯示良好文字 -->
+                    <span class="aqi-range">0–50</span> <!-- 顯示良好範圍 -->
+                </div>
+
+                <div class="aqi-item"> <!-- 建立普通項目 -->
+                    <span class="aqi-color aqi-moderate"></span> <!-- 顯示普通顏色 -->
+                    <span class="aqi-name">普通</span> <!-- 顯示普通文字 -->
+                    <span class="aqi-range">51–100</span> <!-- 顯示普通範圍 -->
+                </div>
+
+                <div class="aqi-item"> <!-- 建立敏感族群不健康項目 -->
+                    <span class="aqi-color aqi-sensitive"></span> <!-- 顯示敏感族群不健康顏色 -->
+                    <span class="aqi-name">對敏感族群不健康</span> <!-- 顯示敏感族群不健康文字 -->
+                    <span class="aqi-range">101–150</span> <!-- 顯示敏感族群不健康範圍 -->
+                </div>
+
+                <div class="aqi-item"> <!-- 建立所有族群不健康項目 -->
+                    <span class="aqi-color aqi-unhealthy"></span> <!-- 顯示所有族群不健康顏色 -->
+                    <span class="aqi-name">對所有族群不健康</span> <!-- 顯示所有族群不健康文字 -->
+                    <span class="aqi-range">151–200</span> <!-- 顯示所有族群不健康範圍 -->
+                </div>
+
+                <div class="aqi-item"> <!-- 建立非常不健康項目 -->
+                    <span class="aqi-color aqi-very-unhealthy"></span> <!-- 顯示非常不健康顏色 -->
+                    <span class="aqi-name">非常不健康</span> <!-- 顯示非常不健康文字 -->
+                    <span class="aqi-range">201–300</span> <!-- 顯示非常不健康範圍 -->
+                </div>
+
+                <div class="aqi-item"> <!-- 建立危害項目 -->
+                    <span class="aqi-color aqi-hazardous"></span> <!-- 顯示危害顏色 -->
+                    <span class="aqi-name">危害</span> <!-- 顯示危害文字 -->
+                    <span class="aqi-range">301+</span> <!-- 顯示危害範圍 -->
+                </div>
+            </section>
+
+            <section class="map-legend"> <!-- 建立觀光景點與測站圖例區塊 -->
+                <div class="layer-title">
+                    <img src="assets/images/layers_782728.png" alt="地圖圖例">
+                    <h3>地圖圖例</h3> <!-- 顯示地圖標記圖例子標題 -->
+                </div>
+                <div id="attraction-legend" class="legend-item"> <!-- 建立觀光景點圖例項目 -->
+                    <span class="legend-dot attraction-legend-dot"></span> <!-- 顯示觀光景點代表顏色 -->
+                    <span>觀光景點</span> <!-- 顯示觀光景點名稱 -->
+                </div>
+                <div id="station-legend" class="legend-item"> <!-- 建立測站點位圖例項目 -->
+                    <span class="legend-dot station-legend-dot"></span> <!-- 顯示測站點位代表顏色 -->
+                    <span>測站點位</span> <!-- 顯示測站點位名稱 -->
+                </div>
+                <div id="township-legend" class="legend-item"> <!-- 建立鄉鎮邊界圖例項目 -->
+                    <span class="legend-dot township-legend-dot"></span> <!-- 顯示鄉鎮邊界代表顏色 -->
+                    <span>鄉鎮邊界</span> <!-- 顯示鄉鎮邊界名稱 -->
+                </div>
+            </section>
+        </aside>
+
+        <section class="map-area"> <!-- 建立右側地圖區域 -->
+            <div id="map"></div> <!-- 放置 Leaflet 地圖 -->
+        </section>
+    </main>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/api.js"></script> <!-- 載入 API 函式 -->
+    <script src="js/map.js"></script> <!-- 載入地圖程式 -->
 </body>
+
 </html>

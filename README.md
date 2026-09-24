@@ -1,24 +1,34 @@
-TourAQI/ (專案根目錄)
-├── .gitignore
-├── README.md
-│
-├── frontend/                # 前端目錄 (10 負責 - 原生開發版)
-│   ├── index.html           # 主頁面 (包含地圖容器、圖層控制介面、彈出視窗骨架)
-│   ├── css/
-│   │   └── style.css        # 樣式表 (處理向右漸層、排版、UI 顏色)
-│   ├── js/
-│   │   ├── main.js          # 主程式 (處理畫面按鈕點擊、頁面初始化)
-│   │   ├── map.js           # Leaflet 地圖專用邏輯 (初始化地圖、圖層套疊、圖示)
-│   │   └── api.js           # 負責呼叫後端 API (使用 fetch 串接 Sammi 寫好的接口)
-│   └── assets/              # 靜態資源
-│       ├── icons/           # 自訂的 marker icon 或介面 icon
-│       └── images/          # 預設圖片等
-│
-├── backend/                 # 後端目錄 (Sammi 負責)
-│   ├── requirements.txt     
-│   └── main.py              # FastAPI 程式進入點
-│
-└── data_pipeline/           # 資料流與排程目錄 (Dwayne 負責)
-    ├── requirements.txt     
-    ├── etl_jobs.py          
-    └── scheduler.py
+# 觀光景點空氣品質展示圖臺 (TourAQI)
+
+## 一、 專案介紹
+
+您的國旅補助用了嗎？想來一場說走就走的旅行？
+
+「觀光景點空氣品質展示圖臺 (TourAQI)」是一個整合台灣全區地圖圖資與即時環境數據的 Web 應用系統。為了協助旅客規劃健康、舒適的行程，系統將空氣品質指標 (AQI)、測站點位與鄉鎮邊界等資訊，轉化為直觀的視覺化地圖圖層。使用者可以快速瀏覽全台各觀光區的即時空汙狀況，並藉由點擊地圖上的測站標記，喚出屬性資料彈出視窗。透過視窗內的按鈕，您可以無縫進入詳細的景點頁面，將客觀的數據轉化為旅遊決策的最佳依據。
+
+成果展示與測試連結：
+👉 http://54.54.64.156:8000
+
+## 二、 專案分工表
+
+團隊採用 Scrum 管理風格進行開發，成員分工如下：
+
+| 團隊成員 | 角色定位 | 負責開發項目 |
+| :--- | :--- | :--- |
+| **陳禹翰** | Data Pipeline | UI/UX 雛型設計、雲端部署、資料庫建置與資料表規劃 (mysqldump)、建立自動化資料流 (APScheduler、ETL) |
+| **陳珈樺** | Backend | 資料介接(FastAPI)、API 規劃與設計 & 文件維護、簡報製作 & 專案報告 |
+| **王邑菱** | Frontend | 圖資平台 Leaflet 導入與圖層套疊資料串接、首頁及景點頁面設計與實作、屬性資料彈出視窗實作 |
+
+## 三、 技術棧 (Tech Stack)
+
+系統採用前後端分離架構，確保開發彈性與系統效能：
+
+- 前端 (Front-end)： HTML, CSS, JavaScript, Leaflet (圖資渲染與互動)
+
+- 後端 (Back-end)： Python, FastAPI (API 伺服器), ETL (資料萃取轉換), APScheduler (背景自動化排程)
+
+- 資料庫 (Database)： MySQL
+
+- 部署與版控 (Deployment & VCS)： AWS (雲端部署), Git (採用 Forking workflow 工作流)
+
+---
