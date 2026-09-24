@@ -184,8 +184,8 @@ attractionMarker.bindPopup(attractionPopupContent); // 將 popup 綁定到觀光
 
 async function loadTownshipBoundaries() { // 建立載入鄉鎮邊界測試資料的函式
     const [boundaryResponse, aqiResponse] = await Promise.all([
-        fetch("http://127.0.0.1:8000/api/boundaries"),
-        fetch("http://127.0.0.1:8000/api/air-quality")
+        fetch("/api/boundaries"),
+        fetch("/api/air-quality")
     ]);
 
     const boundaryResult = await boundaryResponse.json();
@@ -259,7 +259,7 @@ async function loadTownshipBoundaries() { // 建立載入鄉鎮邊界測試資�
 
                     try { // 嘗試取得單一測站 AQI 詳細資料
                         const detailResponse = await fetch(
-                            `http://127.0.0.1:8000/api/air-quality?siteid=${stationId}`
+                            `/api/air-quality?siteid=${stationId}`
                         );
 
                         const detailResult = await detailResponse.json(); // 讀取 API 回傳內容
@@ -351,7 +351,7 @@ townshipCheckbox.addEventListener("change", updateMapLegend); // 鄉鎮邊界狀
 updateMapLegend(); // 頁面載入時依照預設勾選狀態更新圖例
 
 async function loadStationsFromApi() {
-    const response = await fetch("http://127.0.0.1:8000/api/stations");
+    const response = await fetch("/api/stations");
     const result = await response.json();
     const stationCount = document.querySelector("#station-count");
     const stationUpdatedAt = document.querySelector("#station-updated-at");
@@ -366,7 +366,7 @@ async function loadStationsFromApi() {
 
     try {
         const airQualityResponse = await fetch(
-            "http://127.0.0.1:8000/api/air-quality"
+            "/api/air-quality"
         );
 
         const airQualityResult = await airQualityResponse.json();
@@ -374,7 +374,7 @@ async function loadStationsFromApi() {
 
         if (firstStationId) {
             const detailResponse = await fetch(
-                `http://127.0.0.1:8000/api/air-quality?siteid=${firstStationId}`
+                `/api/air-quality?siteid=${firstStationId}`
             );
 
             const detailResult = await detailResponse.json();
@@ -411,14 +411,14 @@ async function loadStationsFromApi() {
 
             try {
                 const response = await fetch(
-                    `http://127.0.0.1:8000/api/stations?siteid=${station.station_id}`
+                    `/api/stations?siteid=${station.station_id}`
                 );
 
                 const result = await response.json();
                 const detail = result.data;
 
                 const airQualityResponse = await fetch(
-                    `http://127.0.0.1:8000/api/air-quality?siteid=${station.station_id}`
+                    `/api/air-quality?siteid=${station.station_id}`
                 );
 
                 const airQualityResult = await airQualityResponse.json();
@@ -461,7 +461,7 @@ loadStationsFromApi().catch((error) => {
 
 async function loadAttractionsFromApi() {
     const response = await fetch(
-        "http://127.0.0.1:8000/api/attractions/sptpoint/"
+        "/api/attractions/sptpoint/"
     );
 
     const result = await response.json();
@@ -485,7 +485,7 @@ async function loadAttractionsFromApi() {
 
             try {
                 const response = await fetch(
-                    `http://127.0.0.1:8000/api/attraction/${attraction.attraction_id}`
+                    `/api/attraction/${attraction.attraction_id}`
                 );
 
                 const result = await response.json();
