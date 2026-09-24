@@ -233,7 +233,7 @@ async function loadTownshipBoundaries() { // 建立載入鄉鎮邊界測試資�
                 fillOpacity: 0 // 讓鄉鎮邊界圖層保持透明
             },
             onEachFeature: (feature, layer) => { // 設定每個鄉鎮區塊的互動行為
-                layer.bindPopup(`${boundary.county_name} ${boundary.town_name}`); // 點擊邊界時顯示鄉鎮名稱
+                layer.bindPopup(`<div class="township-simple-popup">${boundary.county_name}  ${boundary.town_name}</div>`); 
             }
         });
 

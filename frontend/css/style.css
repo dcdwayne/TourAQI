@@ -330,6 +330,13 @@ body { /* 設定整個頁面 */
     padding: 4px; 
 }
 
+/* 加入這段來控制鄉鎮純文字 popup 的寬度 */
+.leaflet-popup-content:has(.township-simple-popup) {
+    width: max-content !important; /* 讓寬度根據文字長度自動適應 */
+    min-width: 100px; /* 設定最小寬度，避免文字太少時太窄 */
+    text-align: center; /* 讓裡面的文字置中 */
+}
+
 .leaflet-popup-content { /* 設定 Leaflet popup 內容區 */
     width: 300px; 
     margin: 16px; 

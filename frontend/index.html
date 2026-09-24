@@ -14,7 +14,7 @@
         <div class="brand"> <!-- 放置網站品牌區域 -->
             <img class="brand-icon" src="assets/images/favicon.ico" alt="觀光景點空氣品質展示圖臺 logo"> <!-- 顯示網站 logo -->
             <div class="brand-text"> <!-- 放置網站名稱文字 -->
-                <h1>觀光景點空氣品質查詢圖台</h1> <!-- 顯示網站主標題 -->
+                <h1>觀光景點空氣品質展示圖臺</h1> <!-- 顯示網站主標題 -->
                 <p>景點與空氣品質資訊</p> <!-- 顯示網站副標題 -->
             </div>
         </div>
@@ -27,8 +27,8 @@
         <aside class="sidebar"> <!-- 建立左側資訊面板 -->
             <section class="layer-section"> <!-- 建立圖層區塊 -->
                 <div class="layer-title"> <!-- 建立圖層標題與圖示區域 -->
+                    <img src="assets/images/map_7263337.png" alt="圖層圖示"> <!-- 顯示圖層圖示 -->
                     <h2>地圖圖層</h2> <!-- 顯示圖層標題 -->
-                    <img src="assets/images/layers_782728.png" alt="圖層圖示"> <!-- 顯示圖層圖示 -->
                 </div>
                 <p>選擇要顯示在地圖上的資料圖層</p> <!-- 顯示操作提示 -->
 
@@ -63,8 +63,10 @@
             </section>
 
             <section class="aqi-section"> <!-- 建立 AQI 指標說明區塊 -->
-                <h2>AQI 指標說明</h2> <!-- 顯示 AQI 標題 -->
-
+                <div class="layer-title">
+                    <img src="assets/images/cloud-computing_117232.png" alt="AQI指標說明圖示">
+                    <h2>AQI 指標說明</h2> <!-- 顯示 AQI 標題 -->
+                </div>
                 <div class="aqi-item"> <!-- 建立良好項目 -->
                     <span class="aqi-color aqi-good"></span> <!-- 顯示良好顏色 -->
                     <span class="aqi-name">良好</span> <!-- 顯示良好文字 -->
@@ -103,7 +105,10 @@
             </section>
 
             <section class="map-legend"> <!-- 建立觀光景點與測站圖例區塊 -->
-                <h3>地圖圖例</h3> <!-- 顯示地圖標記圖例子標題 -->
+                <div class="layer-title">
+                    <img src="assets/images/layers_782728.png" alt="地圖圖例">
+                    <h3>地圖圖例</h3> <!-- 顯示地圖標記圖例子標題 -->
+                </div>
                 <div id="attraction-legend" class="legend-item"> <!-- 建立觀光景點圖例項目 -->
                     <span class="legend-dot attraction-legend-dot"></span> <!-- 顯示觀光景點代表顏色 -->
                     <span>觀光景點</span> <!-- 顯示觀光景點名稱 -->
